@@ -29,9 +29,13 @@
                 $errors[] = 'Full Name is Required.';
             }
             
-            if (filter_var($email, FILTER_VALIDATE_EMAIL) == false ){
+            if (isEmailValid($email) == false ){
                 $errors[] = 'Email is not valid!';
             }
+            
+            /*if (filter_var($email, FILTER_VALIDATE_EMAIL) == false ){
+                $errors[] = 'Email is not valid!';
+            }*/
             
             if (empty($addressline1)){
                 $errors[] = 'Address 1 is Required.';
