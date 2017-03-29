@@ -8,13 +8,13 @@
         <?php
         // put your code here
         require_once './models/dbconnect.php';
-        require_once './models/util.php';
         require_once './models/addressCRUD.php';
-        require_once './models/validation.php';
+        include './models/validation.php';
+        require_once './models/util.php';
         
         $fullname = filter_input(INPUT_POST, 'fullname');
         $email = filter_input(INPUT_POST, 'email');
-        $address1 = filter_input(INPUT_POST, 'address1');
+        $addressline1 = filter_input(INPUT_POST, 'addressline1');
         $city = filter_input(INPUT_POST, 'city');
         $state = filter_input(INPUT_POST, 'state');
         $zip = filter_input(INPUT_POST, 'zip');
@@ -29,11 +29,11 @@
                 $errors[] = 'Full Name is Required.';
             }
             
-            if (filter_var($email, FILTER_VALIDATE_EMAIL) !== false ){
+            if (filter_var($email, FILTER_VALIDATE_EMAIL) == false ){
                 $errors[] = 'Email is not valid!';
             }
             
-            if (empty($address1)){
+            if (empty($addressline1)){
                 $errors[] = 'Address 1 is Required.';
             }
             
@@ -54,11 +54,11 @@
             }
             
             if (count($errors) === 0){
-                if (createAddress($fullname, $email, $address1, $city, $state, $zip, $birthday)){
+                if (createAddress($fullname, $email, $addressline1, $city, $state, $zip, $birthday)){
                     $message = 'Address Added.';
                     $fullname = '';
                     $email = '';
-                    $address1 = '';
+                    $addressline1 = '';
                     $city = '';
                     $state = '';
                     $zip = '';
@@ -70,8 +70,8 @@
             }
         }
         
-        include './templates/add-address.html.php';
         include './templates/errors.html.php';
+        include './templates/add-address.html.php';
         include './templates/messages.html.php';
         ?>
     </body>

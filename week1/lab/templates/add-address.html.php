@@ -2,7 +2,7 @@
 <form action="#" method="post">   
     Full Name: <input name="fullname" value="<?php echo $fullname; ?>" /> <br />
     Email: <input name="email" value="<?php echo $email; ?>" /> <br />
-    Address 1: <input name="address1" value="<?php echo $address1; ?>" /> <br />
+    Address 1: <input name="addressline1" value="<?php echo $addressline1; ?>" /> <br />
     City: <input name="city" value="<?php echo $city; ?>" /> <br />
     State:<select name="state">
         <?php foreach ($states as $key => $value): ?> 
