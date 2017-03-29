@@ -10,6 +10,7 @@
         require_once './models/dbconnect.php';
         require_once './models/util.php';
         require_once './models/addressCRUD.php';
+        require_once './models/validation.php';
         
         $fullname = filter_input(INPUT_POST, 'fullname');
         $email = filter_input(INPUT_POST, 'email');
@@ -28,7 +29,7 @@
                 $errors[] = 'Full Name is Required.';
             }
             
-            if ( filter_var($email, FILTER_VALIDATE_EMAIL) !== false ){
+            if (filter_var($email, FILTER_VALIDATE_EMAIL) !== false ){
                 $errors[] = 'Email is not valid!';
             }
             
@@ -38,6 +39,34 @@
             
             if (empty($city)){
                 $errors[] = 'City is Required.';
+            }
+            
+            if (empty($state)){
+                $errors[] = 'State is required.';
+            }
+            
+            if (isZIPValid($zip) === false){
+                $errors[] = 'Zip is not valid.';
+            }
+            
+            if (isDateValid($birthday) === false){
+                $errors[] = 'Birthdate is required';
+            }
+            
+            if (count($errors) === 0){
+                if (createAddress($fullname, $email, $address1, $city, $state, $zip, $birthday)){
+                    $message = 'Address Added.';
+                    $fullname = '';
+                    $email = '';
+                    $address1 = '';
+                    $city = '';
+                    $state = '';
+                    $zip = '';
+                    $birthday = '';
+                    
+                } else {
+                    $errors[] = 'Could not add to the Database';
+                }
             }
         }
         
