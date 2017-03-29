@@ -47,7 +47,8 @@
             }
             
         }
-
+        
+        $phones = getAllPhone();
 
         include './templates/errors.html.php';
         include './templates/messages.html.php';
