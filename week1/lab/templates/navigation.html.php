@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Adv. PHP Lab One</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="./add-address.php">Add Address</a></li>
+      <li><a href="./index.php">View Addresses</a></li>
+    </ul>
+  </div>
+</nav>

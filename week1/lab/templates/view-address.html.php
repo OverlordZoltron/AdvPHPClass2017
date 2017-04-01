@@ -1,6 +1,15 @@
 <?php if ( is_array($addresses) && count($addresses) > 0 ) : ?>
-<h1>Addresses</h1>
-<table>
+<h1 class="text-center">Addresses</h1>
+<table class="table table-hover">
+    <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Address Line 1</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Birthday</th>
+    </tr>
 <?php foreach( $addresses as $row ) : ?>
     <tr>
     <td><?php echo $row['fullname']; ?> </td>
