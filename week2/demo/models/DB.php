@@ -15,37 +15,11 @@ class DB {
     protected $password;
     
     function __construct($dns, $user, $password) {
-        $this->setDns($dns);
-        $this->setUser($user);
-        $this->setPassword($password);
+        $this->dns=$dns;
+        $this->user=$user;
+        $this->password=$password;
     }
-
-    function getDns() {
-        return $this->dns;
-    }
-
-    function getUser() {
-        return $this->user;
-    }
-
-    function getPassword() {
-        return $this->password;
-    }
-
-    function setDns($dns) {        
-        $this->dns = $dns;
-    }
-
-    function setUser($user) {
-        $this->user = $user;
-    }
-
-    function setPassword($password) {
-        $this->password = $password;
-    }
-
-        
-      
+         
     public function getDb() { 
         
         /*
@@ -58,7 +32,7 @@ class DB {
         try {
             /* Create a Database connection and 
              * save it into the variable */
-            $this->db = new PDO($this->getDns(), $this->getUser(), $this->getPassword());
+            $this->db = new PDO($this->dns, $this->user, $this->password);
             $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         } catch (Exception $ex) {
             /* If the connection fails we will close the 
