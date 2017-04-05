@@ -5,14 +5,21 @@
  *
  * @author 001031823
  */
-class AddressCRUD {
+class AddressCRUD extends DB {
+    /**
+     * Sets parent connections
+     */
+    function __construct() {
+        parent::__construct('mysql:host=localhost;port=3306;dbname=PHPAdvClassSpring2017','root','');
+    }
+    
     /*
      * A method to get all address data 
      * returns Array  
      */
 
     function readAllAddress() {
-        $db = dbconnect();
+        $db = $this->getDb();
         $stmt = $db->prepare("SELECT * FROM ADDRESS");
 
         $results = array();
@@ -38,7 +45,7 @@ class AddressCRUD {
      */
 
     function createAddress($fullname, $email, $addressline1, $city, $state, $zip, $birthday) {
-        $db = dbconnect();
+        $db = $this->getDb();
         $stmt = $db->prepare("INSERT INTO address SET fullname = :fullname, email = :email, addressline1 = :addressline1, city = :city, state = :state, zip = :zip, birthday = :birthday");
         $binds = array(
             ":fullname" => $fullname,
