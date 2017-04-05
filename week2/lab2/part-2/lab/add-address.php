@@ -25,15 +25,22 @@
         $birthday = filter_input(INPUT_POST, 'birthday');
 
         $errors = [];
-        $states = getStates();
+        $validation = new Validation();
+        
+        $utilClass = new Util();
+        $getStates = $utilClass->getStates();
+        
+        $address = new AddressCRUD();
+        
+        $checkPostRequest = $utilClass->isPostRequest();
 
-        if (isPostRequest()) {
+        if ($checkPostRequest) {
 
             if (empty($fullname)) {
                 $errors[] = 'Full Name is Required.';
             }
 
-            if (isEmailValid($email) == false) {
+            if ($validation->isEmailValid($email) == false) {
                 $errors[] = 'Email is not valid!';
             }
 
@@ -53,16 +60,16 @@
                 $errors[] = 'State is required.';
             }
 
-            if (isZIPValid($zip) === false) {
+            if ($validation->isZIPValid($zip) === false) {
                 $errors[] = 'Zip is not valid.';
             }
 
-            if (isDateValid($birthday) === false) {
+            if ($validation->isDateValid($birthday) === false) {
                 $errors[] = 'Birthdate is required';
             }
 
             if (count($errors) === 0) {
-                if (createAddress($fullname, $email, $addressline1, $city, $state, $zip, $birthday)) {
+                if ($address->createAddress($fullname, $email, $addressline1, $city, $state, $zip, $birthday)) {
                     $message = 'Address Added.';
                     $fullname = '';
                     $email = '';

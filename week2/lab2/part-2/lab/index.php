@@ -13,7 +13,9 @@
         require_once './autoload.php';
         include './templates/navigation.html.php';
         
-        $addresses = readAllAddress();
+        $readAddresses = new AddressCRUD();
+        
+        $addresses = $readAddresses->readAllAddress();
         
         include './templates/view-address.html.php';
         ?>

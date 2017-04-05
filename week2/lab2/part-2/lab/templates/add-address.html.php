@@ -32,7 +32,7 @@
                     <div class="col-sm-9">
                         <select name="state" class="form-control">
                             <option value="" selected disabled>Select One...</option>
-                            <?php foreach ($states as $key => $value): ?> 
+                            <?php foreach ($getStates as $key => $value): ?> 
                                 <option value="<?php echo $key; ?>" <?php if ($state == $key): ?> selected="selected" <?php endif; ?>><?php echo $value; ?></option>
                             <?php endforeach; ?>
                         </select>
