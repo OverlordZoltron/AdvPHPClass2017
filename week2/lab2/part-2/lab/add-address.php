@@ -13,10 +13,7 @@
     <body>
         <?php
         // put your code here
-        require_once './models/dbconnect.php';
-        require_once './models/addressCRUD.php';
-        include './models/validation.php';
-        require_once './models/util.php';
+        require_once './autoload.php';
         include './templates/navigation.html.php';
 
         $fullname = filter_input(INPUT_POST, 'fullname');

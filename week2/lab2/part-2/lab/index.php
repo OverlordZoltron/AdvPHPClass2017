@@ -10,8 +10,7 @@
     </head>
     <body>
         <?php
-        include './models/dbconnect.php';
-        include './models/addressCRUD.php';
+        require_once './autoload.php';
         include './templates/navigation.html.php';
         
         $addresses = readAllAddress();
