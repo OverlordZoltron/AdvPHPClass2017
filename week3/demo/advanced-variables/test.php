@@ -15,13 +15,16 @@
             }
             
             public function bark(){
-                echo $name .' is barking <br />';
+                echo $this->name .' is barking <br />';
             }
         }
         
-        $aDog = 'Dog';
+        $dog = 'Dog';
+        $dogBark = 'bark';
         
-        $dog = new $aDog('Jimbo');
+        $newDog = new $dog('Jimbo');
+        
+        echo $newDog->$dogBark();
         
         
         ?>

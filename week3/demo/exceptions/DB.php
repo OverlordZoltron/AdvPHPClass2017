@@ -27,7 +27,12 @@ class DB {
     }
 
     private function setDbConfig($dbConfig) {
-        $this->dbConfig = $dbConfig;
+        if (is_array($dbConfig)){
+            $this->dbConfig = $dbConfig;
+        }
+        else{
+            throw new ArrayException('$dbConfig must be an array');
+        }
     }
     
     /**
