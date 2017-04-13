@@ -1,6 +1,7 @@
 <?php
 /**
- * Description of ArrayException
+ * ArrayException extends the Exception class
+ * So we can make our own exceptions regarding the DB connection Arrays
  *
  * @author 001031823
  */
