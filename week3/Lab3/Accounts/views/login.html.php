@@ -6,7 +6,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="email">Email:</label>
                     <div class="col-sm-9">
-                        <input name="email" class="form-control" placeholder="Enter an Email" value="<?php echo $email; ?>" />
+                        <input name="email" class="form-control" value="<?php echo $email; ?>" />
                     </div>
                 </div>
                 <div class="form-group">

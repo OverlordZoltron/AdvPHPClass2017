@@ -12,22 +12,23 @@
     </head>
     <body>
         <?php
+        //include sessionaccess page which only allows logged in users to continue
         include './views/sessionaccess.html.php';
         require_once './autoload.php';
         include './views/navigation.html.php';
         
-        
-        //display user_id and email
+        $util = new Util();
         $accounts = new Accounts();
         
+        //Set variables email and ID to hold the users unique id and their email
         $email = $accounts->getUserEmail($_SESSION['user_id']);
         $id = $_SESSION['user_id'];
-        //echo $email;
         
-        //logout button
-        //unset the user id
+        if ($util->isPostRequest()){
+            unset($_SESSION['user_id']);
+            $util->redirect("Login.php");
+        }
         
-        //when they log out redirect the user to the login page
         include './views/admin.html.php';
         ?>
     </body>

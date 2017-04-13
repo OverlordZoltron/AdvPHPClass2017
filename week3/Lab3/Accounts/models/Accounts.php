@@ -88,7 +88,12 @@ class Accounts extends DB {
 
         return false;
     }
-    
+    /**
+     * A method to get the UsersEmail based on their id
+     * 
+     * @param type $id
+     * @return string
+     */
     public function getUserEmail($id){
         $db = $this->getDb();
         $stmt = $db->prepare("SELECT * FROM users WHERE user_id = :user_id");
