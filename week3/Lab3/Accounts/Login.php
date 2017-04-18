@@ -33,7 +33,7 @@
                 $util->redirect("Admin.php");
             }
             else {
-                
+                $errors[] = "Information is incorrect, please try again.";
             }
         }
         
