@@ -37,7 +37,7 @@
                     <tr>
                         <td><?php echo $counter++ ?></td>
                         <td><?php echo $fileInfo->getFilename(); ?></td>
-                        <td><a href="read-file.php">Details</a></td>
+                        <td><a href="read-file.php?filename=<?php echo $fileInfo->getFilename();?>">Details</a></td>
                         <td><a href="#" class="btn-danger">Delete</a></td>
                     </tr>
                 <?php endif; ?>
