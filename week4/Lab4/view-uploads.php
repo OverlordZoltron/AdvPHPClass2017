@@ -15,6 +15,17 @@
         // put your code here
         include './views/navigation.html.php';
         $counter = 1;
+        $fileDelete = filter_input(INPUT_GET, 'deleteFile');
+        
+        if (is_string($fileDelete)) {
+            $file = '.'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.$fileDelete;
+            if (is_file($file)){
+                unlink($file);
+            }
+        }
+
+        
+        //$file = '.'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.$fileInfo->getFilename();
 
         //Create a view page that will display all my files uploaded in a list format with a number order. 
         //There should be a view button/link to each file to view more details. 
@@ -38,7 +49,7 @@
                         <td><?php echo $counter++ ?></td>
                         <td><?php echo $fileInfo->getFilename(); ?></td>
                         <td><a href="read-file.php?filename=<?php echo $fileInfo->getFilename();?>">Details</a></td>
-                        <td><a href="#" class="btn-danger">Delete</a></td>
+                        <td><a href="?deleteFile=<?php echo $fileInfo->getFilename();?>" class="btn-danger">Delete</a></td>
                     </tr>
                 <?php endif; ?>
             <?php endforeach; ?>

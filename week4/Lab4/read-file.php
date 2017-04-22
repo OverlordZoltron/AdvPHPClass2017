@@ -58,7 +58,18 @@
             var_dump($finfo->getPathname(), '<br /><br />');
             
         }
-        
         ?>
+        <!--type -->
+        <h2><?php echo $type; ?></h2>
+        
+        <!--size -->
+        <h2><?php echo filesize($file) . ' bytes'; ?></h2>
+        
+        <!--date -->
+        <h2><?php echo date("l F j, Y, g:i a", $finfo->getMTime()); ?></h2>
+        
+        <a class="btn-danger" href="./view-uploads.php<?php unlink($file);?>">Delete</a>
+        
+        <!--link to image -->
     </body>
 </html>

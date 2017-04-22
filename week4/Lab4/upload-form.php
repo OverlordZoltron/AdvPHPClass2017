@@ -12,13 +12,38 @@
     </head>
     <body>
         <?php
+        include './autoload.php';
         include './views/navigation.html.php';
         include './views/upload-form.html.php';
-        
+
+        $errors = [];
+
         //Create a page that will allow me to upload a new file. 
         //I should only be allowed to upload images, text files, html files, word docs and excel files.  (20 points)
-
         //Make sure to add validation and let the user know why the file was not uploaded. Use exceptions. (10 points)
+
+        $filehandler = new Filehandler();
+
+        if (count($_FILES) > 0) {
+            try {
+                $fileName = $filehandler->upLoad('upfile');
+            } catch (RuntimeException $e) {
+                $errors[] = $e->getMessage();
+            }
+        }
+
+
+        include './views/errors.html.php';
         ?>
+
+        <?php if (isset($fileName)) : ?>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-5">
+                <h3 class='label alert-success'><?php echo $fileName; ?> uploaded successfully.</h3>
+            </div>
+        </div>
+        <?php endif; ?>
+
+
     </body>
 </html>

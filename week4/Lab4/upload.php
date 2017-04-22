@@ -15,19 +15,18 @@
         // put your code here
         require './autoload.php';
         include './views/navigation.html.php';
+        include './views/errors.html.php';
+        
+        
         $filehandler = new Filehandler();
 
-        try {
-            $fileName = $filehandler->upLoad('upfile');
-        } catch (RuntimeException $e) {
-            $error = $e->getMessage();
-        }
-        ?>
-
-        <?php if (isset($fileName)) : ?>
-            <h2 class="text-center"><?php echo $fileName; ?> was uploaded successfully.</h2>
-        <?php else: ?>
-            <p><?php echo $error; ?></p>
-        <?php endif; ?>
+//        try {
+//            $fileName = $filehandler->upLoad('upfile');
+//        } catch (RuntimeException $e) {
+//            $error = $e->getMessage();
+//        }
+//        
+//        
+//        ?>
     </body>
 </html>
