@@ -25,51 +25,58 @@
         //All other files can stay as a link to direct download. (5 points)
         // <object src="'+file+'"><embed src="'+file+'"></embed></object>
         /* ****************UPDATE FILE**************** */
-        
+        //get file name
         $filename = filter_input(INPUT_GET, 'filename');
         
-        
+        //define the files location
         $file = '.'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.$filename;
         
         //http://php.net/manual/en/fileinfo.constants.php
-        $finfo = new finfo(FILEINFO_MIME_TYPE);
-        $type = $finfo->file($file);
+        $fMimeInfo = new finfo(FILEINFO_MIME_TYPE);
+        $type = $fMimeInfo->file($file);
         
-        var_dump($type, '<br /><br />');
         
-        //http://php.net/manual/en/function.filesize.php
-        var_dump(filesize($file), '<br /><br />');
+        // http://php.net/manual/en/class.splfileinfo.php
+        $finfo = new SplFileInfo($file);
+        
+        
+        //get the file ready to display based on what type it is
+        switch($type){
+            case($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/gif'):
+                $fileDisplay = '<img src="' . $file . '"/>';
+                break;
+            case ($type == 'text/html') || ($type == 'application/pdf'):
+                //$fileDisplay = '<object src="'. $file .'"><embed src="'. $file .'"></embed></object>';
+                $fileDisplay = '<iframe class="embed-responsive-item" src="' . $file . '"></iframe>';
+                break;
+            case ($type == 'text/plain'):
+                $fileObject = new SplFileObject($file, "r");
+                $fileSize = $fileObject->fread($fileObject->getSize());
+                $fileDisplay = '<textarea class="embed-responsive-item">' . $fileSize . '</textarea>';
+                break;
+            default:
+                $fileDisplay = "";
+        }
+        
         
         /*
          * To delete a file use unlink
          * 
          *  unlink($file)
          */
+        $fileDelete = filter_input(INPUT_GET, 'deleteFile');
         
-        
-        // http://php.net/manual/en/class.splfileinfo.php
-        $finfo = new SplFileInfo($file);
-        
-        if ( $finfo->isFile() ) {
-            var_dump($finfo->getRealPath(), '<br /><br />');
-            var_dump($finfo->getFilename(), '<br /><br />');
-            var_dump(date("l F j, Y, g:i a", $finfo->getMTime()), '<br /><br />');
-            var_dump($finfo->getSize(), '<br /><br />');
-            var_dump($finfo->getPathname(), '<br /><br />');
-            
+        //check if fileDelete is a string
+        if (is_string($fileDelete)) {
+            //if so set the full file path with file name
+            $fileToDelete = '.'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.$fileDelete;
+            //if there is a file inside $file unlink it
+            if (is_file($fileToDelete)){
+                unlink($fileToDelete);
+            }
         }
+        
+        include './views/read-file.html.php';
         ?>
-        <!--type -->
-        <h2><?php echo $type; ?></h2>
-        
-        <!--size -->
-        <h2><?php echo filesize($file) . ' bytes'; ?></h2>
-        
-        <!--date -->
-        <h2><?php echo date("l F j, Y, g:i a", $finfo->getMTime()); ?></h2>
-        
-        <a class="btn-danger" href="./view-uploads.php<?php unlink($file);?>">Delete</a>
-        
-        <!--link to image -->
     </body>
 </html>
