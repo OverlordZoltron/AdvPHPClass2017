@@ -12,7 +12,7 @@
             <p><b>Creation Date: </b><?php echo date("l F j, Y, g:i a", $finfo->getMTime()); ?></p>
 
             <!--link to file -->
-            <p><b>Direct Link: </b><a href="<?php echo $file ?>"><?php echo $filename ?></a></p>
+            <p><b>Direct Link: </b><a href="<?php echo $file; ?>"><?php echo $filename; ?></a></p>
 
             <!--Delete button -->
             <p><a href="?deleteFile=<?php echo $finfo->getFilename(); ?>"><button type="button" class="btn btn-danger">Delete</button></a></p>
