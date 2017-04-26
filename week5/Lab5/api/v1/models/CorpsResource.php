@@ -43,7 +43,8 @@ class CorpsResource extends DBSpring implements IRestModel{
 
         if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
             return true;
-        } 
+        }
+        var_dump($this->getDB()->errorInfo());
         return false;
     }
     
@@ -68,9 +69,10 @@ class CorpsResource extends DBSpring implements IRestModel{
     
     public function delete($id) {
         /* note you should validate before adding to the data base */
-        $stmt = $this->getDb()->prepare("DELETE FROM corps WHERE id = " . $id . " LIMIT 1");
+        $stmt = $this->getDb()->prepare("DELETE FROM corps WHERE id = :id LIMIT 1");
+        $binds = array(":id" => $id);
 
-        if ($stmt->execute() && $stmt->rowCount() > 0) {
+        if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
             return true;
         } 
         return false;

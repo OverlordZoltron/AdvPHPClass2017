@@ -54,7 +54,7 @@ try {
         if (NULL === $id) {
             throw new InvalidArgumentException($resourceUpperCaseName . ' ID ' . $id . ' was not found');
         } else {
-            if ($resourceData->put($id)) {
+            if ($resourceData->put($id, $serverData)) {
                 $restServer->setMessage($resourceUpperCaseName . ' Updated');
             } else {
                 throw new Exception($resourceUpperCaseName . ' could not be updated');
@@ -66,12 +66,12 @@ try {
 
         if (NULL === $id) {
             throw new InvalidArgumentException($resourceUpperCaseName . ' ID ' . $id . ' was not found');
-        }
-
-        if ($restServer->setData($resourceData->delete($id))) {
-            $restServer->setMessage($resourceUpperCaseName . ' Deleted');
         } else {
-            throw new Exception($resourceUpperCaseName . ' could not be Deleted');
+            if ($resourceData->delete($id)) {
+                $restServer->setMessage($resourceUpperCaseName . ' Deleted');
+            } else {
+                throw new Exception($resourceUpperCaseName . ' could not be Deleted');
+            }
         }
     }
 
