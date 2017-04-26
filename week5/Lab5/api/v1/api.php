@@ -27,17 +27,6 @@ try {
         throw new InvalidArgumentException($resourceUpperCaseName . ' Resource Not Found');
     }
 
-
-    /*
-     * You can add resoruces that will be handled by the server 
-     * 
-     * There are clever ways to use advanced variables to sort of
-     * generalize the code below. That would also require that all
-     * resoruces follow the same standard. Interfaces can ensure that.
-     * 
-     * But in this example we will just code it out.
-     * 
-     */
     if ('GET' === $verb) {
 
         if (NULL === $id) {
@@ -50,7 +39,6 @@ try {
     }
 
     if ('POST' === $verb) {
-
 
         if ($resourceData->post($serverData)) {
             $restServer->setMessage($resourceUpperCaseName . ' Added');
@@ -65,6 +53,25 @@ try {
 
         if (NULL === $id) {
             throw new InvalidArgumentException($resourceUpperCaseName . ' ID ' . $id . ' was not found');
+        } else {
+            if ($resourceData->put($id)) {
+                $restServer->setMessage($resourceUpperCaseName . ' Updated');
+            } else {
+                throw new Exception($resourceUpperCaseName . ' could not be updated');
+            }
+        }
+    }
+
+    if ('DELETE' === $verb) {
+
+        if (NULL === $id) {
+            throw new InvalidArgumentException($resourceUpperCaseName . ' ID ' . $id . ' was not found');
+        }
+
+        if ($restServer->setData($resourceData->delete($id))) {
+            $restServer->setMessage($resourceUpperCaseName . ' Deleted');
+        } else {
+            throw new Exception($resourceUpperCaseName . ' could not be Deleted');
         }
     }
 
