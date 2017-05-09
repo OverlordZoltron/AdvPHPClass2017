@@ -4,8 +4,10 @@
  * in our application
  */
 (function() {
+    //Use strict Javascript
     'use strict';
     
+    //Define constants for main module
     angular
         .module('app')
         .constant('REQUEST', {

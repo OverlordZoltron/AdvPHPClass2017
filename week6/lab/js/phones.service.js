@@ -3,14 +3,18 @@
  * which will allow us to getPhones based on the URL, and find a Phone based on the id
  */
 (function () {
+    //Use Strict Javascript
     'use strict';
-
+    
+    //Define the factory service for the main module
     angular
         .module('app')
         .factory('PhonesService', PhonesService);
-
+        
+    //Inject parameters into PhonesService
     PhonesService.$inject = ['$http', 'REQUEST'];
-
+    
+    //Define PhonesService function
     function PhonesService($http, REQUEST) {
         var url = REQUEST.Phones;
         var service = {
@@ -20,7 +24,7 @@
         return service;
 
         //////
-
+        //Define function that will get phones
         function getPhones() {
             return $http.get(url)
                     .then(getPhonesComplete, getPhonesFailed);
@@ -34,6 +38,7 @@
             }
         }
 
+        //Define function that will find an idividual phone by ID
         function findPhone(id) {
             
             return getPhones()
@@ -41,6 +46,7 @@
                     return findPhoneComplete(data);;
                 });
 
+            //Function that finds a phones complete information
             function findPhoneComplete(data) {
                 var results = {};
 
