@@ -1,8 +1,7 @@
 <?php
 
 /**
- *
- * @author GFORTI
+ * IRestModel is used as an interface for the REST services
  */
 interface IRestModel {
     //put your code here

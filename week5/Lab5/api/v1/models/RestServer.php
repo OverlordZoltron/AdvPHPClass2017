@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description of RestServer
+ * Class for interacting with the data we get/have
  *
  * @author GFORTI
  */

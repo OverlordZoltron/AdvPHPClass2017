@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of CorpseResource
+ * Implement REST CRUD for Corps using the REST API
  *
  * @author 001031823
  */
