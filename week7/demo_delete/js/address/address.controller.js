@@ -13,8 +13,9 @@
         var vm = this;
 
         vm.addresses = [];
-        //setTimeout(activate, 1000);
-        
+        vm.deleteAddress = deleteAddress;
+        vm.message = '';
+
         activate();
 
         ////////////
@@ -22,6 +23,15 @@
         function activate() {
             AddressService.getAllAddresses().then(function (response) {
                 vm.addresses = response;
+            });
+        }
+        
+        function deleteAddress(addressId) {
+             AddressService.deleteAddress(addressId).then(function (response) {
+                vm.message = 'Address Deleted';
+                activate();
+            }, function(error) {
+                vm.message = 'Address was NOT Deleted';
             });
         }
 

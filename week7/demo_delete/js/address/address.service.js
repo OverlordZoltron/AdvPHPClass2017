@@ -74,7 +74,7 @@
                 return $http.post(url, model);
             }
             function deleteAddress(address_id) {
-                var _url = url +  '/' + address_id;
+                var _url = url + '/' + address_id;
                 return $http.delete(_url);
             }
             function putAddress(address_id, fullname, email, addressline1, city, state, zip, birthday ) {  
