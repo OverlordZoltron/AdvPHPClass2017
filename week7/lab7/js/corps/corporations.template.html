@@ -1,0 +1,26 @@
+<h1>Corps Table</h1>
+
+<div class="content">
+    
+    <h3>Search: </h3> <input ng-model="searchText">
+    <!-- https://docs.angularjs.org/api/ng/filter/filter -->
+    <br />
+    <br /> 
+    <p>{{vm.message}}</p>
+    <table class="gridtable" id="searchTextResults">
+        <thead>
+            <tr>
+                <th>Corporation Name</th>
+                <th>Corporation Owner</th>                
+                <th></th>
+            </tr>
+        </thead>    
+        
+        <tr ng-repeat="corps in vm.corporations | filter:searchText">
+            <td>{{corps.corp}}</td>                  
+            <td>{{corps.owner}}</td>
+            <td><a ng-href="#/corps/{{corps.id}}">View</a></td>
+        </tr>
+    </table>
+        
+</div>
