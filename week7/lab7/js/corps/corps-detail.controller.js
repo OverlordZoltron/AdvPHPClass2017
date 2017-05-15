@@ -27,8 +27,13 @@
                 if (vm.corps.hasOwnProperty('incorp_dt')) {
                     vm.corps.incorp_dt = new Date(vm.corps.incorp_dt);
                 }
-                console.log(vm.corps);                
-                loadMap('41.8239890,-71.4128340');
+                console.log(vm.corps);   
+                
+                if(vm.corps.hasOwnProperty('location')){
+                    aLocation = vm.corps.location;
+                }
+                loadMap(aLocation);
+                //loadMap('41.8239890,-71.4128340');
             });
         }
                
