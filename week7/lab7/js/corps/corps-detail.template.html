@@ -1,21 +1,24 @@
+<h1 class="title is-1 has-text-centered">Corps Details</h1>
 <div class="content">
-    <h1>Corps Details</h1>
-    
-    <h2>{{vm.corps.corp | uppercase}}</h2>
-    <h3>{{vm.corps.owner | uppercase}}</h3>
+    <div class="columns">
+        <div class="column is-4 is-offset-4">
+            <h2>{{vm.corps.corp| uppercase}}</h2>
+            <h3>{{vm.corps.owner| uppercase}}</h3>
 
-    <p><strong> Incorporated On:</strong> {{ vm.corps.incorp_dt | date:'longDate' }} </p>
+            <p><strong> Incorporated On:</strong> {{ vm.corps.incorp_dt | date:'longDate' }} </p>
 
-    <p><strong>Email: </strong>
-        <a href="" ng-href="mailto:{{vm.corps.email}}">{{vm.corps.email}}</a>
-    </p>
-    
-    <p><strong>Phone: </strong>
-        <a href="tel:{{vm.corps.phone}}">{{vm.corps.phone}}</a>
-    </p>
-    
-    <div class="googleMap"></div>
-    
-    
-    <p><a href="#/corps">Back</a></p>
+            <p><strong>Email: </strong>
+                <a href="" ng-href="mailto:{{vm.corps.email}}">{{vm.corps.email}}</a>
+            </p>
+
+            <p><strong>Phone: </strong>
+                <a href="tel:{{vm.corps.phone}}">{{vm.corps.phone}}</a>
+            </p>
+
+            <div class="googleMap"></div>
+
+
+            <p><a href="#/corps">Back</a></p>
+        </div>
+    </div>
 </div>
