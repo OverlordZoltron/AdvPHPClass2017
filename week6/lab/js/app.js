@@ -22,7 +22,7 @@
                     templateUrl: 'js/phone-detail.template.html',
                     controller: 'PhoneDetailController',
                     controllerAs: 'vm'
-                })
+                }).
                 otherwise({
                     redirectTo: '/'
                 });
